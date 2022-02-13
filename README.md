@@ -1,39 +1,26 @@
-# bioadapt-mrc
+# BioADAPT-MRC
 
+This repository is the official implementation of paper "BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task". 
 
-# BioQA_externalFeatures
-
-This repository is the official implementation of paper "External Features Enriched Model for Biomedical Question Answering". 
-
-The code is based on the [original BERT Repository](https://github.com/google-research/bert) released by Google Team and the [BioBERT Model](https://github.com/dmis-lab/biobert) released by [DMIS-LAB](https://github.com/dmis-lab).
-
+<!-- The code is based on the [original BERT Repository](https://github.com/google-research/bert) released by Google Team and the [BioBERT Model](https://github.com/dmis-lab/biobert) released by [DMIS-LAB](https://github.com/dmis-lab).
+ -->
 The repo's structure is:
 ```
-BioQAExternalFeatures
-├─ dataProcess
-│    ├─ bioner.py
-│    ├─ posTreat.py
-│    ├─ pos_ner_treat.py
-│    └─ readme.md
-├─ scripts
-│    ├─ evaluation.sh
-│    ├─ prediction.sh
+
+bioadapt-mrc
+├─ BioADAPT-MRC
 │    ├─ readme.md
-│    └─ training.sh
-├─ LICENSE
+│    ├─ environment.yml
+│    ├─ src
+│        ├─ configs.py
+│        ├─ load_dataset.py
+│        ├─ data_generator.py
+│        ├─ enc_disc_qa.py
+│        ├─ model.py
+│        ├─ test.py
+│        └─ transform_n2b_factoid.py
 ├─ README.md
-├─ __init__.py
-├─ create_pretraining_data.py
-├─ extract_features.py
-├─ modeling.py
-├─ modeling_test.py
-├─ optimization.py
-├─ optimization_test.py
-├─ requirements.txt
-├─ run_factoid_baseline.py # Original BioBERT model 
-├─ run_factoid_pos_ner.py # Our model (Feature Fusion + NER feature + POS feature)
-├─ tokenization.py
-└─ tokenization_test.py
+└─ LICENSE.md
 ```
 
 ## Preparations
