@@ -1,4 +1,4 @@
-root_path                     = ROOT/PATH/TO/BioADAPT-MRC/
+root_path                     = 'ROOT/PATH/TO/BioADAPT-MRC/'
 bioasq_comp_num               = '9'
 predict_file                  = f'test_bioasq_{bioasq_comp_num}B.json'
 golden_file                   = f'Task{bioasq_comp_num}BGoldenEnriched/{bioasq_comp_num}B_golden.json'
