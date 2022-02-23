@@ -2,12 +2,10 @@
 
 This repository is the official implementation of paper "BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task". 
 
-<!-- The code is based on the [original BERT Repository](https://github.com/google-research/bert) released by Google Team and the [BioBERT Model](https://github.com/dmis-lab/biobert) released by [DMIS-LAB](https://github.com/dmis-lab).
- -->
 The repo's structure is:
-```
 
-bioadapt-mrc
+```
+BioADAPT-MRC
 ├─ BioADAPT-MRC
 │    ├─ readme.md
 │    ├─ environment.yml
@@ -27,29 +25,15 @@ bioadapt-mrc
 
 ### Data and Model Params
 
-[Trained Models's parameters](https://drive.google.com/drive/folders/1mQ68-CIsz3izoj_yuzVE86o8URN2o4SD?usp=sharing)
- and [processed data (added POS and NER labels)](https://drive.google.com/drive/folders/1rFeVTIjSiTXV_M4_4iGhvQXqbYtt3nTn?usp=sharing) can be directly downloaded from Google Drive.
+[Trained Models's parameters](https://drive.google.com/drive/folders/17769XOnmhp9H0t_4E0EAUb4Th7F0z6z1?usp=sharing)
+ and [processed test data](https://drive.google.com/drive/folders/1YxGEJiURH49Twl_rj6AlJK9zeVWdNfa0?usp=sharing) can be directly downloaded from Google Drive.
 
-For Chinese users, if the speed of Google Drive is limited, please contact us for the data and models on Baidu Pan.
+The baseline model is located at `model_baseline.pt`. The models trained on BioASQ-7b, BioASQ-8b, and BioASQ-9b are respectively saved at `model_7b.pt`, `model_8b.pt`, and `model_9b.pt`, respectively.
 
-For the trained models:
-
-* We firstly fine-tuned [BERT (BERT-Base, Multilingual Cased)](https://github.com/google-research/bert) under our enriched external-feature framework on [SQuAD v1.1](https://rajpurkar.github.io/SQuAD-explorer/explore/1.1/dev/), 
-of which the param could be found under `model/squad`
-
-* Next, we further fine-tuned the model respectively on Biomedical Training Sets (6b, 7b and 8b), and the well trained models could be 
-downloaded from `model/6b`, `model/7b`, `model/8b`.
-
-For the data utilized in our experiments:
-
-* The data mainly come from `SQuAD` and `BioASQ Challenge`. Particularly, for the biomedical QA data, we have utilized the
- enriched data provided by [DMIS-LAB](https://github.com/dmis-lab);
-
-* You can get the feature-enriched training data under two ways:
-
-   * Directly download the processed data from our [google drive link](https://drive.google.com/drive/folders/1rFeVTIjSiTXV_M4_4iGhvQXqbYtt3nTn?usp=sharing)
-   
-   * Use the provided tools in `dataProcess` to extract the NER, POS and BioNER features on your own side.  
+The data used for testing can be found at:
+* BioASQ-7b: `test_bioasq_7B.json`
+* BioASQ-8b: `test_bioasq_8B.json`
+* BioASQ-9b: `test_bioasq_9B.json`
 
 ### Requirements
 
