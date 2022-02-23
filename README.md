@@ -44,125 +44,46 @@ environment called `mrc`. In order to create the environment type:
 conda env create -f env.yml
 ```
 
-## Evaluating
-
-For evaluation, please follow the steps below:
-```
-* 
-* 
-
-### Model Training
-
-If you want to train the model from scratch (which means from original BERT), please download the [BERT param](https://github.com/google-research/bert) 
-to a `model` folder, 
-and [the feature-enrich squad training data (`data/squad`)](https://drive.google.com/drive/folders/1rFeVTIjSiTXV_M4_4iGhvQXqbYtt3nTn?usp=sharing)
- to a `data` folder, indicate the variables `MODEL_DIR` and `DATA_DIR`,
-
-```
-export MODEL_DIR=/full/path/to/model
-export DATA_DIR=/full/path/to/data
-export OUTPUT_DIR=/please/set/an/output/dir
-```
-and run the training file:
-```
-python run_factoid_pos_ner.py \
-     --do_train=True\
-     --do_predict=True \
-     --vocab_file=$MODEL_DIR/vocab.txt \
-     --bert_config_file=$MODEL_DIR/bert_config.json \
-     --init_checkpoint=$MODEL_DIR/model.ckpt-1000000 \
-     --max_seq_length=384 \
-     --train_batch_size=8 \
-     --learning_rate=5e-6 \
-     --doc_stride=128 \
-     --num_train_epochs=4.0 \
-     --do_lower_case=False \
-     --train_file=$DATA_DIR/ner_pos_train-v1.1.json \
-     --predict_file=$DATA_DIR/ner_pos_BioASQ-test-factoid-6b-1.json \
-     --output_dir=$OUTPUT_DIR
-```
-
-If you want to train the model from SQuAD-trained step, please download the [squad param under `model/squad`](https://drive.google.com/drive/folders/1mQ68-CIsz3izoj_yuzVE86o8URN2o4SD?usp=sharing)
- to a `model` folder, 
-and [the target BioASQ training data (e.g., `data/6b`)](https://drive.google.com/drive/folders/1rFeVTIjSiTXV_M4_4iGhvQXqbYtt3nTn?usp=sharing)
- to a `data` folder, similarly indicate the variables `MODEL_DIR` and `DATA_DIR`,
-
-```
-export MODEL_DIR=/full/path/to/model
-export DATA_DIR=/full/path/to/data
-export OUTPUT_DIR=/please/set/an/output/dir
-```
-and run the training file:
-```
-python run_factoid_pos_ner.py \
-     --do_train=True\
-     --do_predict=True \
-     --vocab_file=$MODEL_DIR/vocab.txt \
-     --bert_config_file=$MODEL_DIR/bert_config.json \
-     --init_checkpoint=$MODEL_DIR/model.ckpt-1000000 \
-     --max_seq_length=384 \
-     --train_batch_size=8 \
-     --learning_rate=5e-6 \
-     --doc_stride=128 \
-     --num_train_epochs=4.0 \
-     --do_lower_case=False \
-     --train_file=$DATA_DIR/ner_pos_6b.json \
-     --predict_file=$DATA_DIR/ner_pos_BioASQ-test-factoid-6b-1.json \
-     --output_dir=$OUTPUT_DIR
-```
-
-### Model Prediction
-If you only want to predict the result on a specific BioASQ challenge test set, please download the [the target model param under for example `model/6b`](https://drive.google.com/drive/folders/1mQ68-CIsz3izoj_yuzVE86o8URN2o4SD?usp=sharing)
- to a `model` folder, 
-and [the target BioASQ test data (e.g., `data/6b`)](https://drive.google.com/drive/folders/1rFeVTIjSiTXV_M4_4iGhvQXqbYtt3nTn?usp=sharing)
- to a `data` folder, similarly indicate the variables `MODEL_DIR` and `DATA_DIR`,
-
-```
-export MODEL_DIR=/full/path/to/model
-export DATA_DIR=/full/path/to/data
-export OUTPUT_DIR=/please/set/an/output/dir
-```
-and run the training file:
-```
-python run_factoid_pos_ner.py \
-     --do_train=False\
-     --do_predict=True \
-     --vocab_file=$MODEL_DIR/vocab.txt \
-     --bert_config_file=$MODEL_DIR/bert_config.json \
-     --init_checkpoint=$MODEL_DIR/model.ckpt-1000000 \
-     --max_seq_length=384 \
-     --train_batch_size=8 \
-     --learning_rate=5e-6 \
-     --doc_stride=128 \
-     --num_train_epochs=4.0 \
-     --do_lower_case=False \
-     --train_file=$DATA_DIR/ner_pos_6b.json \
-     --predict_file=$DATA_DIR/ner_pos_BioASQ-test-factoid-6b-1.json \
-     --output_dir=$OUTPUT_DIR
-```
-
-### Evaluation 
+## Evaluation
 
 To evaluate BioASQ answers, the system should be able to execute java codes, and please refer https://github.com/BioASQ/Evaluation-Measures, the BioASQ official evaluation tool, for details.
 
 Besides, we have utilized the transformation script released by [DMIS-LAB](https://github.com/dmis-lab/bioasq-biobert/tree/v1.0/biocodes)
 
-To conduct the complete evalution process, it is required the golden answers released by BioASQ Challenge, which could be
- downloaded after registering on http://www.bioasq.org/. 
+For evaluation, please follow the steps below:
+```
+* save the [transform_n2b_factoid.py](https://github.com/dmis-lab/bioasq8b/blob/master/factoid/biocodes/transform_n2b_factoid.py
+) file in `../BioADAPT-MRC/src/`
+* clone the [official evaluation scripts](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
+* make directories `../BioADAPT-MRC/output/`, `../BioADAPT-MRC/data/` and `../BioADAPT-MRC/model/`
+* download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) in `../BioADAPT-MRC/data/`
+* download the pre-processed test sets from the Google drive and save to `../BioADAPT-MRC/data/`
+* download the models from the Google drive and save to `../BioADAPT-MRC/model/`
+* For evaluating the baseline model, set `trained_model_name = 'model_baseline.pt'` in the `../src/configs.py` file.
+  For evaluating the trained model, set `trained_model_name = f'model_{bioasq_comp_num}b.pt'` in the `../src/configs.py` file.
+* For evaluating the baseline/trained model on BioASQ-7b test set, set `bioasq_comp_num = '7'` in the `../src/configs.py` file.
+For evaluating the baseline/trained model on BioASQ-8b test set, set `bioasq_comp_num = '8'` in the `../src/configs.py` file.
+For evaluating the baseline/trained model on BioASQ-9b test set, set `bioasq_comp_num = '9'` in the `../src/configs.py` file.
+* Run the evaluation file:
+  ```python ../BioADAPT-MRC/src/test.py
+  ```
 
 ## Results
-### 6b
-| Metrics  | SAcc  | LAcc  | MRR  |
-| ------------- |-------------:| -----:|-----:|
-| Our Model   | 0.4517 | 0.6294 | 0.5197 |
+
+The output will be as follows:
 
 ### 7b
-| Metrics  | SAcc  | LAcc  | MRR  |
-| ------------- |-------------:| -----:|-----:|
-| Our Model   | 0.4444 | 0.6419| 0.5165 |
+SAcc:
+LAcc:
+MRR :
 
 ### 8b
-| Metrics  | SAcc  | LAcc  | MRR  |
-| ------------- |-------------:| -----:|-----:|
-| Our Model   | 0.3937 | 0.6098| 0.4688 |
+SAcc:
+LAcc:
+MRR :
+
+### 9b
+SAcc:
+LAcc:
+MRR :
 
