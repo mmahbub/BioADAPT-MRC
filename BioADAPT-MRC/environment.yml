@@ -1,4 +1,4 @@
-name: QA
+name: mrc
 channels:
   - pytorch
   - conda-forge
