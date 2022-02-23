@@ -11,12 +11,10 @@ BioADAPT-MRC
 │    ├─ environment.yml
 │    ├─ src
 │        ├─ configs.py
-│        ├─ load_dataset.py
-│        ├─ data_generator.py
-│        ├─ enc_disc_qa.py
-│        ├─ model.py
-│        ├─ test.py
-│        └─ transform_n2b_factoid.py
+│        ├─ tokenization.py
+│        ├─ enc_disc_mrc.py
+│        ├─ bioadapt_mrc_model.py
+│        └─ test.py
 ├─ README.md
 └─ LICENSE.md
 ```
