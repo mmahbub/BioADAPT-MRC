@@ -6,6 +6,5 @@
 │   ├─ data_generator.py
 │   ├─ enc_disc_qa.py
 │   ├─ model.py
-│   ├─ test.py
-│   └─ transform_n2b_factoid.py
+│   └─ test.py
 ```
