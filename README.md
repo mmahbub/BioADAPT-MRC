@@ -66,7 +66,10 @@ For evaluation, please follow the steps below:
   For evaluating the baseline or trained model on BioASQ-8b test set, set `bioasq_comp_num = '8'` in the `../src/configs.py` file.
   
   For evaluating the baseline or trained model on BioASQ-9b test set, set `bioasq_comp_num = '9'` in the `../src/configs.py` file.
-* Run `merge_test_batches.py` to merge all 5 golden-enriched test batches.
+* Run the following command to merge all 5 golden-enriched test batches for either BioASQ-7b/BioASQ-8b/BioASQ-9b:
+  ```
+  python3 merge_test_batches.py
+  ```
 * Run the tokenization file in the `../src/` folder:
   ```
   python3 tokenization.py
