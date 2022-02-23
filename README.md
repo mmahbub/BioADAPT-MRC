@@ -51,7 +51,7 @@ To evaluate BioASQ answers, the system should be able to execute java codes, and
 Besides, we have utilized the transformation script released by [DMIS-LAB](https://github.com/dmis-lab/bioasq-biobert/tree/v1.0/biocodes)
 
 For evaluation, please follow the steps below:
-```
+
 * save the [transform_n2b_factoid.py](https://github.com/dmis-lab/bioasq8b/blob/master/factoid/biocodes/transform_n2b_factoid.py
 ) file in `../BioADAPT-MRC/src/`
 * clone the [official evaluation scripts](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
