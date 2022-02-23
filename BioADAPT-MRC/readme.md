@@ -2,9 +2,8 @@
 ```
 ├─ src
 │   ├─ configs.py
-│   ├─ load_dataset.py
-│   ├─ data_generator.py
+│   ├─ tokenization.py
 │   ├─ enc_disc_qa.py
-│   ├─ model.py
+│   ├─ bioadapt_mrc_model.py
 │   └─ test.py
 ```
