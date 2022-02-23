@@ -1,4 +1,4 @@
-### The scripts are arranges as follows:
+### The scripts are arranged as follows:
 ```
 ├─ src
 │   ├─ configs.py
