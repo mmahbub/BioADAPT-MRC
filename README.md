@@ -65,9 +65,13 @@ For evaluation, please follow the steps below:
   For evaluating the baseline or trained model on BioASQ-8b test set, set `bioasq_comp_num = '8'` in the `../src/configs.py` file.
   
   For evaluating the baseline or trained model on BioASQ-9b test set, set `bioasq_comp_num = '9'` in the `../src/configs.py` file.
+* Run the tokenization file:
+  ```
+  python3 ../BioADAPT-MRC/src/tokenization.py
+  ```
 * Run the evaluation file:
   ```
-  python ../BioADAPT-MRC/src/test.py
+  python3 ../BioADAPT-MRC/src/test.py
   ```
 
 ## Results
@@ -82,16 +86,15 @@ MRR :
 ```
 
 ### 8b
+```
 SAcc:
-
 LAcc:
-
 MRR :
+```
 
 ### 9b
+```
 SAcc:
-
 LAcc:
-
 MRR :
-
+```
