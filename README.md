@@ -36,10 +36,10 @@ The data used for testing can be found at:
 ### Environment Setup
 
 The `environment.yml` file contains all the packages and dependencies needed to re-create the Anaconda
-environment called `mrc`. In order to create the environment type: 
+environment called `mrc`. In order to create the environment, run: 
 
 ```
-conda env create -f env.yml
+conda env create -f environment.yml
 ```
 
 ## Evaluation
@@ -52,11 +52,12 @@ For evaluation, please follow the steps below:
 
 * save the [transform_n2b_factoid.py](https://github.com/dmis-lab/bioasq8b/blob/master/factoid/biocodes/transform_n2b_factoid.py
 ) file to `../BioADAPT-MRC/src/`
-* clone the repo with [the BioASQ official evaluation tool](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
-* make three directories: `../BioADAPT-MRC/output/`, `../BioADAPT-MRC/data/` and `../BioADAPT-MRC/model/`
-* download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) and save to `../BioADAPT-MRC/data/`
-* download the pre-processed test sets from the Google drive and save to `../BioADAPT-MRC/data/`
-* download the models from the Google drive and save to `../BioADAPT-MRC/model/`
+* clone the repo with [the BioASQ official evaluation tool](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/BioADAPT-MRC/`
+* make three directories: `../BioADAPT-MRC/BioADAPT-MRC/output/`, `../BioADAPT-MRC/BioADAPT-MRC/data/` and `../BioADAPT-MRC/BioADAPT-MRC/model/`
+* download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) and save to `../data/`
+* download the pre-processed test sets from the Google drive and save to `../data/`
+* download the models from the Google drive and save to `../model/`
+* Set the `root_path` (in the `../src/configs.py` file) to the root path of the BioADAPT-MRC folder
 * For evaluating the baseline model, set `trained_model_name = 'model_baseline.pt'` in the `../src/configs.py` file.
   
   For evaluating the trained model, set `trained_model_name = f'model_{bioasq_comp_num}b.pt'` in the `../src/configs.py` file.
@@ -65,36 +66,36 @@ For evaluation, please follow the steps below:
   For evaluating the baseline or trained model on BioASQ-8b test set, set `bioasq_comp_num = '8'` in the `../src/configs.py` file.
   
   For evaluating the baseline or trained model on BioASQ-9b test set, set `bioasq_comp_num = '9'` in the `../src/configs.py` file.
-* Run the tokenization file:
+* Run the tokenization file in the `../src/` folder:
   ```
-  python3 ../BioADAPT-MRC/src/tokenization.py
+  python3 tokenization.py
   ```
-* Run the evaluation file:
+* Run the evaluation file in the `../src/` folder:
   ```
-  python3 ../BioADAPT-MRC/src/test.py
+  python3 test.py
   ```
 
 ## Results
 
-The output will be as follows:
+The output for our trained model will be as follows:
 
 ### 7b
 ```
-SAcc:
-LAcc:
-MRR :
+SAcc: 0.4506
+LAcc: 0.642
+MRR : 0.5286
 ```
 
 ### 8b
 ```
-SAcc:
-LAcc:
-MRR :
+SAcc: 0.3841
+LAcc: 0.6159
+MRR : 0.4844
 ```
 
 ### 9b
 ```
-SAcc:
-LAcc:
-MRR :
+SAcc: 0.5583
+LAcc: 0.7423
+MRR : 0.6308
 ```
