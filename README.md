@@ -46,7 +46,7 @@ conda env create -f env.yml
 
 ## Evaluation
 
-To evaluate BioASQ answers, the system should be able to execute java codes, and please refer https://github.com/BioASQ/Evaluation-Measures, the BioASQ official evaluation tool, for details.
+To evaluate BioASQ answers, the system should be able to execute java codes, and please refer to [the BioASQ official evaluation tool](https://github.com/BioASQ/Evaluation-Measures), for details.
 
 Besides, we have utilized the transformation script released by [DMIS-LAB](https://github.com/dmis-lab/bioasq-biobert/tree/v1.0/biocodes)
 
@@ -54,9 +54,9 @@ For evaluation, please follow the steps below:
 
 * save the [transform_n2b_factoid.py](https://github.com/dmis-lab/bioasq8b/blob/master/factoid/biocodes/transform_n2b_factoid.py
 ) file in `../BioADAPT-MRC/src/`
-* clone the [official evaluation scripts](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
-* make directories `../BioADAPT-MRC/output/`, `../BioADAPT-MRC/data/` and `../BioADAPT-MRC/model/`
-* download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) in `../BioADAPT-MRC/data/`
+* clone the repo with [the BioASQ official evaluation tool](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
+* make three directories: `../BioADAPT-MRC/output/`, `../BioADAPT-MRC/data/` and `../BioADAPT-MRC/model/`
+* download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) and save to `../BioADAPT-MRC/data/`
 * download the pre-processed test sets from the Google drive and save to `../BioADAPT-MRC/data/`
 * download the models from the Google drive and save to `../BioADAPT-MRC/model/`
 * For evaluating the baseline model, set `trained_model_name = 'model_baseline.pt'` in the `../src/configs.py` file.
@@ -74,16 +74,22 @@ The output will be as follows:
 
 ### 7b
 SAcc:
+
 LAcc:
+
 MRR :
 
 ### 8b
 SAcc:
+
 LAcc:
+
 MRR :
 
 ### 9b
 SAcc:
+
 LAcc:
+
 MRR :
 
