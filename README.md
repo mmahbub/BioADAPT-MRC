@@ -75,11 +75,11 @@ For evaluation, please follow the steps below:
 The output will be as follows:
 
 ### 7b
+```
 SAcc:
-
 LAcc:
-
 MRR :
+```
 
 ### 8b
 SAcc:
