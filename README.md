@@ -53,7 +53,7 @@ Besides, we have utilized the transformation script released by [DMIS-LAB](https
 For evaluation, please follow the steps below:
 
 * save the [transform_n2b_factoid.py](https://github.com/dmis-lab/bioasq8b/blob/master/factoid/biocodes/transform_n2b_factoid.py
-) file in `../BioADAPT-MRC/src/`
+) file to `../BioADAPT-MRC/src/`
 * clone the repo with [the BioASQ official evaluation tool](https://github.com/BioASQ/Evaluation-Measures) in `../BioADAPT-MRC/`
 * make three directories: `../BioADAPT-MRC/output/`, `../BioADAPT-MRC/data/` and `../BioADAPT-MRC/model/`
 * download the golden-enriched test sets from [the official BioASQ-challenge website](http://participants-area.bioasq.org/datasets/) and save to `../BioADAPT-MRC/data/`
