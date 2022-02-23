@@ -1,31 +1,34 @@
-data_dir                      = '/net/kdinxidk03/opt/NFS/75y/data/qa/output/'
+bioasq_comp_num               = '9'
+predict_file                  = f'test_bioasq_{bioasq_comp_num}B.json'
+golden_file                   = f'Task{bioasq_comp_num}BGoldenEnriched/{bioasq_comp_num}B_golden.json'
+trained_model_name            = f'model_{bioasq_comp_num}b.pt' #'model_baseline.pt'
+out_domain_name               = f'bioasq_{bioasq_comp_num}B'
+data_dir                      = '/net/kdinxidk03/opt/NFS/75y/data/qa/output/model/'
 output_dir                    = '/net/kdinxidk03/opt/NFS/75y/data/qa/output/'
 output_model_dir              = '/net/kdinxidk03/opt/NFS/75y/data/qa/output/model/'
 golden_data_folder            = '/net/kdinxidk03/opt/NFS/75y/data/qa/dataset_pos/bioasq/'
-golden_files                  = [
-                                 'Task7BGoldenEnriched/7B_golden.json', 
-                                 'Task8BGoldenEnriched/8B_golden.json', 
-                                 'Task9BGoldenEnriched/9B_golden.json'
-                                ]
-java_file_path                = '/home/75y/project_dir/QA-IN-PROGRESS/src_bioasq/Evaluation-Measures/flat/BioASQEvaluation/dist/BioASQEvaluation.jar evaluation.EvaluatorTask1b -phaseB -e 5'
-trained_model_name            = 'model_baseline.pt' #model_7b.pt #model_8b.pt #model9b.pt
-out_domain_name               = 'bioasq_7B' #'bioasq_8B', 'bioasq_9B'
+java_file_path                = '/home/75y/project_dir/BioADAPT-MRC/Evaluation-Measures/flat/BioASQEvaluation/dist/BioASQEvaluation.jar evaluation.EvaluatorTask1b -phaseB -e 5'
 original_model_name_or_path   = 'bioelectra'
 pretrained_model_name_or_path = 'kamalkraj/bioelectra-base-discriminator-pubmed-pmc-lt'
+overwrite_cache               = True
 no_cuda                       = False
 device                        = "cuda"
 which_gpu                     = "1"
 n_gpu                         = 1
-thread                        = 512
+threads                       = 512
 local_rank                    = -1
+initializer_range             = 0.02
+null_score_diff_threshold     = 0.0
 per_gpu_eval_batch_size       = 8
 tokenizer_name                = ''
+config_name                   = ''
 model_type                    = 'electra'
 cache_dir                     = ''
 n_best_size                   = 5
 max_query_length              = 64
 max_answer_length             = 30
 verbose_logging               = False
+version_2_with_negative       = False
 max_seq_length                = 384
 doc_stride                    = 128
 emb_dim                       = 768
@@ -36,4 +39,5 @@ freeze_encoder                = True
 freeze_qa_output_generator    = True
 freeze_discriminator_encoder  = True
 freeze_aux_qa_output_generator= True
+USE_AUX_QA_LOSS               = True
 seed                          = 42

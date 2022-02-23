@@ -4,6 +4,9 @@
 import sys
 sys.path.append('../')
 
+import src.configs as configs
+from src.bioadapt_mrc_model import bioadapt_mrc_net
+
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = configs.which_gpu  # specify which GPU(s) to be used if multiple gpus
 
@@ -31,9 +34,6 @@ try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
     from tensorboardX import SummaryWriter
-
-import src.configs as configs
-from src.bioadapt_mrc_model import bioadapt_mrc_net
 
 logger = logging.getLogger(__name__)
 
@@ -153,6 +153,8 @@ def evaluate(model, tokenizer):
             output_nbest_file,
             output_null_log_odds_file,
             configs.verbose_logging,
+            configs.version_2_with_negative,
+            configs.null_score_diff_threshold,
             tokenizer,
         )
 
@@ -167,8 +169,6 @@ def main():
             "examples. This could result in errors when building features from the examples. Please reduce the doc "
             "stride or increase the maximum length to ensure the features are correctly built."
         )
-
-    configs.device = device
 
     # load pretrained model and tokenizer
     if configs.local_rank not in [-1, 0]:
@@ -193,7 +193,7 @@ def main():
         for checkpoint in checkpoints:
             # reload the model
             global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
-            model = siamese_adv_net()
+            model = bioadapt_mrc_net()
             
             if configs.USE_TRAINED_MODEL:
                 model.load_state_dict(torch.load(f'{checkpoint}{configs.trained_model_name}'))  # , force_download=True)
@@ -202,19 +202,21 @@ def main():
             
             evaluate(model, tokenizer)
 
-            if not os.path.exists(configs.output_model_dir):
-                os.makedirs(configs.output_model_dir)
-
-            os.system(f"python3 transform_n2b_factoid.py --nbest_path /net/kdinxidk03/opt/NFS/75y/data/qa/output/nbest_predictions_test_{configs.out_domain_name}_base.json --output_path {configs.outut_dir}")
-            os.system(f"java -Xmx10G -cp {configs.java_file_path} {configs.golden_data_folder}{configs.golden_files[0]} {configs.output_dir}BioASQform_BioASQ-answer.json | cut -d' ' -f2,3,4 | sed -e 's/ /,/g' >> {configs.output_dir}sacc_lacc_mrr.txt")
+            if os.path.exists(f'{configs.output_dir}sacc_lacc_mrr.txt'):
+                os.remove(f'{configs.output_dir}sacc_lacc_mrr.txt')
+                
+            os.system(f"python3 transform_n2b_factoid.py --nbest_path /net/kdinxidk03/opt/NFS/75y/data/qa/output/nbest_predictions_test_{configs.out_domain_name}_base.json --output_path {configs.output_dir}")
+            os.system(f"java -Xmx10G -cp {configs.java_file_path} {configs.golden_data_folder}{configs.golden_file} {configs.output_dir}BioASQform_BioASQ-answer.json | cut -d' ' -f2,3,4 | sed -e 's/ /,/g' >> {configs.output_dir}sacc_lacc_mrr.txt")
             print('\n')
 
             with open(f'{configs.output_dir}sacc_lacc_mrr.txt', 'r') as f:
                 result = f.readlines()
-            result = list(map(float, result_1[-1].replace('\n', '').split(',')))
-     
-            print('----------RESULTS----------')
-            print(result)
+            result = list(map(float, result[-1].replace('\n', '').split(',')))
+            result = [round(res, 4) for res in result]
+            
+            print('----- RESULTS ------')
+            print(result[0], result[1], result[2])
+            print('--------------------')
 
 if __name__ == "__main__":
     main()

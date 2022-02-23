@@ -117,7 +117,7 @@ class Disc_QA_Out(nn.Module):
                 end_positions=None):
 
         output = self.discriminator_encoder(encoder_out)
-        
+
         # hidden representation of the CLS token, which is at position 0
         last_hidden_state_cls = output[:, 0, :]
         encoder_last_hidden_state_cls = encoder_out[:, 0, :]
@@ -130,7 +130,7 @@ class Disc_QA_Out(nn.Module):
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1).contiguous()
         end_logits = end_logits.squeeze(-1).contiguous()
-        
+
         total_loss = None
         if start_positions is not None and end_positions is not None:
             # If we are on multi-GPU, split add a dimension
@@ -147,18 +147,18 @@ class Disc_QA_Out(nn.Module):
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
             total_loss = (start_loss + end_loss) / 2
-        
+
         return last_hidden_state_cls, QuestionAnsweringModelOutput(loss=total_loss,
                                                                    start_logits=start_logits,
                                                                    end_logits=end_logits)
 
 class ReverseLayerF(Function): 
-     """
-     Gradient Reversal Layer from:
-     Unsupervised Domain Adaptation by Backpropagation (Ganin & Lempitsky, 2015)
-     Forward pass is the identity function. In the backward pass,
-     the upstream gradients are multiplied by -lambda (i.e. gradient is reversed)
-     """
+    '''
+    Gradient Reversal Layer from:
+    Unsupervised Domain Adaptation by Backpropagation (Ganin & Lempitsky, 2015)
+    Forward pass is the identity function. In the backward pass,
+    the upstream gradients are multiplied by -lambda (i.e. gradient is reversed)
+    '''
     @staticmethod
     def forward(ctx, x, _lambda_):
         ctx._lambda_ = _lambda_

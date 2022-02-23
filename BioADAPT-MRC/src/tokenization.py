@@ -1,4 +1,6 @@
 # the tokenization code is inspired from the huggingface example on question-answering task: https://github.com/huggingface/transformers/blob/master/examples/legacy/question-answering/run_squad.py  
+import sys
+sys.path.append('../')
 
 import glob
 import logging
@@ -15,8 +17,10 @@ from tqdm import tqdm, trange
 import transformers
 from transformers import AutoTokenizer, squad_convert_examples_to_features
 
-from transformers.data.processors.squad import SquadResult, SquadV1Processor, SquadV2Processor
+from transformers.data.processors.squad import SquadResult, SquadV1Processor
 from transformers.trainer_utils import is_main_process
+
+import src.configs as configs
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +39,7 @@ def load_and_cache_examples(tokenizer, evaluate=False, output_examples=False):
             list(filter(None, configs.original_model_name_or_path.split("/"))).pop(),
             str(configs.max_seq_length),
             "test" if configs.do_test else exit(1),
-            configs.dataset_name,
+            configs.out_domain_name,
         ),
     )
 
@@ -53,6 +57,7 @@ def load_and_cache_examples(tokenizer, evaluate=False, output_examples=False):
     else:
         logger.info("Creating features from dataset file at %s", input_dir)
 
+        processor = SquadV1Processor()
         examples = processor.get_dev_examples(configs.data_dir, filename=configs.predict_file)
 
         features, dataset = squad_convert_examples_to_features(

@@ -43,8 +43,8 @@ class bioadapt_mrc_net(nn.Module):
 
     def forward(self, data_batch):
         '''
-	    input: data batch
-            output: encodings, total loss        
+        input: data batch
+        output: encodings, total loss        
         '''
         question_context_features, start_positions, end_positions = self.move_to_cuda(data_batch)
 
@@ -66,7 +66,7 @@ class bioadapt_mrc_net(nn.Module):
         return encodings, factoid_qa_outputs, aux_qa_outputs, adv_loss, aux_qa_loss, original_qa_loss, total_loss
 
     def init_weights(self, module):
-        """Initialize the weights"""
+        '''Initialize the weights'''
         if isinstance(module, nn.Linear):
             module.weight.data.normal_(mean=0.0, std=configs.initializer_range)
             if module.bias is not None:
@@ -80,7 +80,7 @@ class bioadapt_mrc_net(nn.Module):
             module.weight.data.fill_(1.0)
 
     def move_to_cuda(self, data_batch):
-	"""mode data batch to cuda"""
+        '''mode data batch to cuda'''
         question_context_features, start_positions, end_positions = data_batch
         for key in question_context_features[0]:
             question_context_features[0][key] = torch.autograd.Variable(
@@ -100,7 +100,7 @@ class bioadapt_mrc_net(nn.Module):
 
 
     def siamese_encoder(self, question_context_features):
-	"""generate encodings"""
+        '''generate encodings'''
         encoding_domain_0 = self.encoder(question_context_features[0])  # out dim: B X 512 X 784
         encoding_domain_1 = self.encoder(question_context_features[1])  # out dim: B X 512 X 784
         encoding_domain_2 = self.encoder(question_context_features[2])  # out dim: B X 512 X 784
@@ -109,9 +109,9 @@ class bioadapt_mrc_net(nn.Module):
 
     def siamese_discriminator(self, encodings, start_positions, end_positions):
         '''
-            generate the probability of the two samples coming from the same domain 
-            :param encodings:
-            :return:
+        generate the probability of the two samples coming from the same domain 
+        :param encodings:
+        :return:
         '''
         encoding_domain_0, encoding_domain_1, encoding_domain_2 = encodings
 
@@ -139,7 +139,7 @@ class bioadapt_mrc_net(nn.Module):
 
     def gradient_reversal_layer(self, encoding):
         '''
-            generate an output with the same floating values but during backpass their gradient will be negated
+        generate an output with the same floating values but during backpass their gradient will be negated
         '''
         reversed_feature = ReverseLayerF.apply(encoding.last_hidden_state,
                                                configs.reverse_layer_lambda)
@@ -148,8 +148,8 @@ class bioadapt_mrc_net(nn.Module):
 
     def siamese_factoid_qa_out_gen(self, encodings, start_positions, end_positions):
         '''
-           input: encodings, start_positions, end_positions
-	   output: QA loss
+        input: encodings, start_positions, end_positions
+        output: QA loss
         '''
         encoding_domain_0, encoding_domain_1, encoding_domain_2 = encodings
 
