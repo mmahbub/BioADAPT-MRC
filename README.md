@@ -35,18 +35,21 @@ The data used for testing can be found at:
 * BioASQ-8b: `test_bioasq_8B.json`
 * BioASQ-9b: `test_bioasq_9B.json`
 
-### Requirements
+### Environment Setup
 
-To install requirements:
+The `environment.yml` file contains all the packages and dependencies needed to re-create the Anaconda
+environment called `mrc`. In order to create the environment type: 
 
 ```
-pip install -r requirements.txt
+conda env create -f env.yml
 ```
 
-## Utilization
+## Evaluating
 
-Following are the using guides for training, predicting and evaluating our framework. For more information,
- please refer to the script files in the `scripts` folder.
+For evaluation, please follow the steps below:
+```
+* 
+* 
 
 ### Model Training
 
