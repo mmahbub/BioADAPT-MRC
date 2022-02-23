@@ -3,7 +3,7 @@
 ├─ src
 │   ├─ configs.py
 │   ├─ tokenization.py
-│   ├─ enc_disc_qa.py
+│   ├─ enc_disc_mrc.py
 │   ├─ bioadapt_mrc_model.py
 │   └─ test.py
 ```
