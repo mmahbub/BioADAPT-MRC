@@ -28,7 +28,7 @@ BioADAPT-MRC
 [Trained Models's parameters](https://drive.google.com/drive/folders/17769XOnmhp9H0t_4E0EAUb4Th7F0z6z1?usp=sharing)
  and [processed test data](https://drive.google.com/drive/folders/1YxGEJiURH49Twl_rj6AlJK9zeVWdNfa0?usp=sharing) can be directly downloaded from Google Drive.
 
-The baseline model is located at `model_baseline.pt`. The models trained on BioASQ-7b, BioASQ-8b, and BioASQ-9b are respectively saved at `model_7b.pt`, `model_8b.pt`, and `model_9b.pt`, respectively.
+The baseline model is located at `model_baseline.pt`. The models trained on BioASQ-7b, BioASQ-8b, and BioASQ-9b can be found at `model_7b.pt`, `model_8b.pt`, and `model_9b.pt`, respectively.
 
 The data used for testing can be found at:
 * BioASQ-7b: `test_bioasq_7B.json`
