@@ -214,9 +214,9 @@ def main():
             result = list(map(float, result[-1].replace('\n', '').split(',')))
             result = [round(res, 4) for res in result]
             
-            print('----- RESULTS ------')
-            print(result[0], result[1], result[2])
-            print('--------------------')
+            print(f'SAcc: {result[0]}')
+            print(f'LAcc: {result[1]}')
+            print(f'MRR : {result[2]}')
 
 if __name__ == "__main__":
     main()
