@@ -80,7 +80,7 @@ For evaluation, please follow the steps below sequentially:
 
 ## Results
 
-The output for our trained model will be as follows:
+The output scores for our trained model should be as follows:
 
 ### 7b
 ```
