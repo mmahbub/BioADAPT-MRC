@@ -6,16 +6,16 @@ The repo's structure is:
 
 ```
 BioADAPT-MRC
-│  ├─ README.md
-│  ├─ LICENSE.md
-│  ├─ environment.yml
-│  ├─ src
-│      ├─ configs.py
-│      ├─ merge_test_batches.py
-│      ├─ tokenization.py
-│      ├─ enc_disc_mrc.py
-│      ├─ bioadapt_mrc_model.py
-└─     └─ test.py
+│     ├─ README.md
+│     ├─ LICENSE.md
+│     ├─ environment.yml
+│     ├─ src
+│         ├─ configs.py
+│         ├─ merge_test_batches.py
+│         ├─ tokenization.py
+│         ├─ enc_disc_mrc.py
+│         ├─ bioadapt_mrc_model.py
+└─        └─ test.py
 ```
 
 ## Preparations
