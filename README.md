@@ -1,6 +1,8 @@
 # BioADAPT-MRC
 
-This repository is the official implementation of paper [BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task](https://arxiv.org/abs/2202.13174). 
+This repository is the official implementation of the paper [BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task](https://arxiv.org/abs/2202.13174).
+
+If you use any part of this repository, we shall be obliged if you cite [our paper](https://arxiv.org/abs/2202.13174).
 
 The repo's structure is:
 
