@@ -1,6 +1,6 @@
 # BioADAPT-MRC
 
-This repository is the official implementation of paper [BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task"](https://arxiv.org/abs/2202.13174). 
+This repository is the official implementation of paper [BioADAPT-MRC: adversarial learning-based domain adaptation improves biomedical machine reading comprehension task](https://arxiv.org/abs/2202.13174). 
 
 The repo's structure is:
 
@@ -103,7 +103,7 @@ LAcc: 0.7423
 MRR : 0.6308
 ```
 
-#### Please reach out if you face any issues while trying to run the code!
+#### Please reach out if you face any issues!
 
 # Citation
 Mahbub, M., Srinivasan, S., Begoli, E. and Peterson, G.D., 2022. BioADAPT-MRC: Adversarial Learning-based Domain Adaptation Improves Biomedical Machine Reading Comprehension Task. arXiv preprint arXiv:2202.13174.
