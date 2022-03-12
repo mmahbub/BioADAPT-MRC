@@ -105,7 +105,7 @@ LAcc: 0.7423
 MRR : 0.6308
 ```
 
-### Please reach out if you run into any issue.
+### Please reach out if you run into any issues.
 
 # Citation
 Mahbub, M., Srinivasan, S., Begoli, E. and Peterson, G.D., 2022. BioADAPT-MRC: Adversarial Learning-based Domain Adaptation Improves Biomedical Machine Reading Comprehension Task. arXiv preprint arXiv:2202.13174.
